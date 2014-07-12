@@ -1,0 +1,4 @@
+FSharpKata
+==========
+
+FSharp Kata examples
