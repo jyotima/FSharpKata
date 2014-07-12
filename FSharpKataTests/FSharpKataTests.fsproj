@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
     <Name>FSharpKataTests</Name>
+    <OutputPath>bin\Debug\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,4 +69,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <UsingTask AssemblyFile="$(ProjectDir)..\Tools\FsharpLint\FSharpLint.MSBuildIntegration.dll" TaskName="FSharpLintTask" />
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(ProjectDir)..\Tools\FSharpCoreDependencies\FSharp.Core.sigdata;$(ProjectDir)..\Tools\FSharpCoreDependencies\FSharp.Core.optdata" DestinationFolder="$(TargetDir)" />
+    <FSharpLintTask Project="$(MSBuildProjectFullPath)" TreatWarningsAsErrors="True" />
+  </Target>
 </Project>

@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSharpLint.Framework</name></assembly>
+<members>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:FSharpLint.Framework.Resources.GetString(System.String,System.Globalization.CultureInfo)">
+<summary>
+ Returns the value of the specified string resource for a given culture.
+</summary>
+</member>
+<member name="M:FSharpLint.Framework.Resources.GetString(System.String)">
+<summary>
+ Returns the value of the specified string resource for the current culture.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.Resources">
+<summary>
+ Provides a way of getting string values from the framework&apos;s resource files (files in src/FSharpLint.Framework/Resources/).
+ Used to retrieve multi-lingual strings inside of the app.
+</summary>
+</member>
+<member name="T:FSharpLint.Framework.Ast.VisitorResult.WalkWithVisitor">
+<summary>
+ Enables state to be passed along a walk of a tree. 
+ e.g. to sum the number of if statements in a function.
+</summary>
+</member>
+<member name="T:FSharpLint.Framework.Ast.VisitorResult.ContinueWithVisitorsForChildren">
+<summary>
+ Enables state to be passed down to certain children.
+</summary>
+</member>
+<member name="T:FSharpLint.Framework.Ast.VisitorResult.ContinueWithVisitor">
+<summary>
+ Enables state to be passed down to children.
+</summary>
+</member>
+<member name="T:FSharpLint.Framework.Ast.VisitorResult.Stop">
+<summary>
+ Do not visit any children.
+</summary>
+</member>
+<member name="T:FSharpLint.Framework.Ast.VisitorResult.Continue">
+<summary>
+ Visit children with the current visitor.
+</summary>
+</member>
+<member name="T:FSharpLint.Framework.Ast.VisitorResult">
+<summary>
+ The return value of a visitor that lets the it specify how other nodes should be visited.
+ Using partial application you can apply state to each visitor returned, 
+ allowing for things such as summing the number of if statements in a function to be done purely.
+</summary>
+</member>
+<member name="T:FSharpLint.Framework.Ast.GetVisitorForChild">
+<summary>
+ Defines a function that a visitor will return when it wants to supply 
+ specific visitors for the node its visiting&apos;s children
+</summary>
+</member>
+<member name="T:FSharpLint.Framework.Ast.Visitor">
+<summary>
+ Defines a function that visits a node on the AST.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:FSharpLint.Framework.Ast.parseInput(System.String,Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Compiler.SourceCodeServices.CheckFileResults,Microsoft.FSharp.Core.FSharpFunc{FSharpLint.Framework.Ast.CurrentNode,FSharpLint.Framework.Ast.VisitorResult}}})">
+<summary>
+ Parse a single string.
+</summary>
+</member>
+<member name="M:FSharpLint.Framework.Ast.parse(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,System.Boolean},Microsoft.FSharp.Compiler.SourceCodeServices.InteractiveChecker,Microsoft.FSharp.Compiler.SourceCodeServices.ProjectOptions,System.String,System.String,Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Compiler.SourceCodeServices.CheckFileResults,Microsoft.FSharp.Core.FSharpFunc{FSharpLint.Framework.Ast.CurrentNode,FSharpLint.Framework.Ast.VisitorResult}}})">
+<summary>
+ Parse a file.
+</summary>
+</member>
+<member name="M:FSharpLint.Framework.Ast.walkFile(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,System.Boolean},System.Collections.Generic.IEnumerable{Microsoft.FSharp.Core.FSharpFunc{FSharpLint.Framework.Ast.CurrentNode,FSharpLint.Framework.Ast.VisitorResult}},Microsoft.FSharp.Compiler.Ast.ParsedInput)">
+<summary>
+ If the result of walking the previous child was a walk visitor
+     Then pass that walk visitor to the sibling.
+ We need this case for when we have walked down to a leaf node, 
+ and that leaf node returns a walk visitor.
+</summary>
+</member>
+<member name="M:FSharpLint.Framework.Ast.walk(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,System.Boolean},FSharpLint.Framework.Ast.AstNode,Microsoft.FSharp.Core.FSharpFunc{FSharpLint.Framework.Ast.CurrentNode,FSharpLint.Framework.Ast.VisitorResult})">
+ <param name="finishEarly">States whether to stop walking the tree, used for asynchronous environments to cancel the task.</param>
+</member>
+<member name="M:FSharpLint.Framework.Ast.|Visitor|UseExisting|End|(FSharpLint.Framework.Ast.VisitorResult,Microsoft.FSharp.Core.FSharpOption{FSharpLint.Framework.Ast.VisitorResult},System.Int32,FSharpLint.Framework.Ast.AstNode)">
+<summary>
+ Work out which visitor to use to visit a given child.
+</summary>
+</member>
+<member name="M:FSharpLint.Framework.Ast.checkAtEndOfWalk(FSharpLint.Framework.Ast.VisitorResult,Microsoft.FSharp.Core.FSharpOption{FSharpLint.Framework.Ast.VisitorResult})">
+<summary>
+ Check if the return value of walking children is the end of a visitor walk.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.Ast">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:FSharpLint.Framework.AstInfo.isOperator(System.String)">
+<summary>
+ Is an identifier an operator overload?
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="P:FSharpLint.Framework.AstInfo.operators">
+<summary>
+ Operator identifiers can be made up of &quot;op_&quot; followed by a sequence of operators from this list.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.AstInfo">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:FSharpLint.Framework.Configuration.configuration(System.String)">
+<summary>
+ Parse a configuration file.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.Configuration">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.HintParser.Expressions">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.HintParser.Constants">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.HintParser.NumericLiterals">
+<summary>
+ Not supporting hex single and hex float right now.
+ Decimal float currently will lose precision.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.HintParser.StringAndCharacterLiterals">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.HintParser.Identifiers">
+<summary>
+ Need to change isLetter so that it&apos;s using unicode character classes.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.HintParser.Operators">
+
+</member>
+<member name="T:FSharpLint.Framework.HintParser">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.LoadVisitors.IRegisterPluginWithConfigChecker">
+<summary>
+ Extension of IRegisterPlugin that gets passed a configuration file before the plugin is registered. 
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.LoadVisitors.IRegisterPlugin">
+<summary>
+ Interface to be implemented to register a plugin.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Framework.LoadVisitors.PlainTextVisitor">
+<summary>
+ Visitor that visists the plain text of the F# files in a project.
+</summary>
+</member>
+<member name="T:FSharpLint.Framework.LoadVisitors.AstVisitor">
+<summary>
+ Visitor that visits the nodes in the abstract syntax trees of the F# files in a project.
+</summary>
+</member>
+<member name="M:FSharpLint.Framework.LoadVisitors.loadPlugins(System.Reflection.Assembly)">
+<summary>
+ Loads all registered visitors (files containing a class implementing IRegisterPlugin) from a given assembly.
+</summary>
+</member>
+<member name="M:FSharpLint.Framework.LoadVisitors.checkConfigsForFailures(Microsoft.FSharp.Collections.FSharpMap{System.String,FSharpLint.Framework.Configuration.Analyser},Microsoft.FSharp.Collections.FSharpList{System.Type})">
+ <summary>
+ Gets a list of failures that occurred when checking a given config file using a given list of checkConfigs.
+ </summary>
+ <param name="checkConfigs">List of config checkers, these can be loaded from an assembly using loadConfigCheckers</param>
+</member>
+<member name="M:FSharpLint.Framework.LoadVisitors.loadConfigCheckers(System.Reflection.Assembly)">
+<summary>
+ Loads all implementations of IRegisterPluginWithConfigChecker from a given assembly.
+</summary>
+</member>
+<member name="T:FSharpLint.Framework.LoadVisitors">
+<summary>
+ Dynamically loads visitors (plugins) from an assembly.
+ Used so that visitors can easily be registered using the Hollywood principle 
+ by implementing IRegisterPlugin, this means a new visitor can be added 
+ by just adding a single new file to a project without having to modify any other files.
+</summary>
+</member>
+</members>
+</doc>

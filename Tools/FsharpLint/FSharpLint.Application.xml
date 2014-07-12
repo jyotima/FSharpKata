@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSharpLint.Application</name></assembly>
+<members>
+<member name="F:FSharpLint.Application.ErrorHandling.Error.Input">
+<summary>
+ Entire input file, needed to display where in the file the error occurred.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="F:FSharpLint.Application.ErrorHandling.Error.Info">
+<summary>
+ Description of the error.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="M:FSharpLint.Application.ErrorHandling.errorInfoLine(Microsoft.FSharp.Compiler.Range.range,System.String)">
+<summary>
+ Generates error reporting information on where in a file an error has occured.
+</summary>
+</member>
+<member name="T:FSharpLint.Application.ErrorHandling">
+<summary>
+ Contains the functionality for reporting lint errors.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FSharpLint.Application.ProjectFile">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="M:FSharpLint.Application.RunLint.parseProject(System.Func{System.Boolean},System.String,System.Action{FSharpLint.Application.RunLint.ParserProgress},System.Action{FSharpLint.Application.ErrorHandling.Error})">
+ <summary>Parses and runs the linter on all the files in a project.</summary>
+ <param name="finishEarly">Function that when returns true cancels the parsing of the project, useful for cancellation tokens etc.</param>
+ <param name="projectFile">Absolute path to the .fsproj file.</param>
+ <param name="progress">Callback that's called at the start and end of parsing each file (or when a file fails to be parsed).</param>
+ <param name="errorReceived">Callback that's called when a lint error is detected.</param>
+</member>
+<member name="T:FSharpLint.Application.RunLint">
+<summary>
+ Runs the lint on an entire project using a .fsproj file.
+</summary>
+</member>
+<member name="T:Microsoft.FSharp.Compiler.MSBuildResolver.ErrorWarningCallbackSig">
+<summary>
+ Callback for errors and warnings.
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolutionResults.suggestedBindingRedirects">
+<summary>
+ Binding redirects that reference resolution recommends for the app.config file.
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolutionResults.referenceCopyLocalPaths">
+<summary>
+ Paths to files that reference resolution recommend be copied to the local directory
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolutionResults.referenceScatterPaths">
+<summary>
+ Additional files required to support multi-file assemblies.
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolutionResults.referenceSatellitePaths">
+<summary>
+ Paths to satellite assemblies used for localization.
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolutionResults.relatedPaths">
+<summary>
+ Paths to related files (like .xml and .pdb)
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolutionResults.referenceDependencyPaths">
+<summary>
+ Paths to dependencies
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolutionResults.resolvedFiles">
+<summary>
+ Paths to primary references
+</summary>
+</member>
+<member name="T:Microsoft.FSharp.Compiler.MSBuildResolver.ResolutionResults">
+<summary>
+ Reference resolution results. All paths are fully qualified.
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolvedFile.baggage">
+<summary>
+ Round-tripped baggage string
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolvedFile.redist">
+<summary>
+ The name of the redist the assembly was found in
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolvedFile.version">
+<summary>
+ The version of the assembly (like 4.0.0.0)
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolvedFile.fusionName">
+<summary>
+ The long fusion name of the assembly
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolvedFile.resolvedFrom">
+<summary>
+ Location that the assembly was resolved from
+</summary>
+</member>
+<member name="F:Microsoft.FSharp.Compiler.MSBuildResolver.ResolvedFile.itemSpec">
+<summary>
+ Item specification
+</summary>
+</member>
+<member name="T:Microsoft.FSharp.Compiler.MSBuildResolver.ResolvedFile">
+<summary>
+ Information about a resolved file.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:Microsoft.FSharp.Compiler.MSBuildResolver.ResolutionEnvironment">
+<summary>
+ Whether the resolve should follow compile-time rules or runtime rules.                      
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:Microsoft.FSharp.Compiler.MSBuildResolver.ResolvedFrom">
+<summary>
+ Describes the location where the reference was found.
+</summary>
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:Microsoft.FSharp.Compiler.MSBuildResolver">
+
+</member>
+</members>
+</doc>
