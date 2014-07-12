@@ -4,8 +4,8 @@ open FsUnit
 open Xunit
 open FsUnit.Xunit
 
-[<Fact>] 
-let ``first test case.`` () =
+[<Fact>]
+let ``first test case.``() = 
     1 |> should equal 1
     1 |> should not' (equal 2)
     10.1 |> should (equalWithin 0.1) 10.11
@@ -14,7 +14,7 @@ let ``first test case.`` () =
     "ships" |> should not' (startWith "ss")
     "ships" |> should endWith "ps"
     "ships" |> should not' (endWith "ss")
-    [1] |> should contain 1
+    [ 1 ] |> should contain 1
     [] |> should not' (contain 1)
     true |> should be True
     false |> should not' (be True)
@@ -25,4 +25,4 @@ let ``first test case.`` () =
     // anObj |> should not' (be Null) bunch of object related ones at https://github.com/fsharp/fsunit
     11 |> should be (greaterThan 10)
     1 |> should not' (be ofExactType<obj>)
-    // (fun () -> failwith "BOOM!") |> should throw typeof<System.Exception>
+// (fun () -> failwith "BOOM!") |> should throw typeof<System.Exception>
