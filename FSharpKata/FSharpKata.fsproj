@@ -23,6 +23,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>bin\Debug\FSharpKata.XML</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -72,6 +74,6 @@
   <UsingTask AssemblyFile="$(ProjectDir)..\Tools\FsharpLint\FSharpLint.MSBuildIntegration.dll" TaskName="FSharpLintTask" />
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(ProjectDir)..\Tools\FSharpCoreDependencies\FSharp.Core.sigdata;$(ProjectDir)..\Tools\FSharpCoreDependencies\FSharp.Core.optdata" DestinationFolder="$(TargetDir)" />
-    <FSharpLintTask Project="$(MSBuildProjectFullPath)" TreatWarningsAsErrors="true" />
+    <FSharpLintTask Project="$(MSBuildProjectFullPath)" TreatWarningsAsErrors="True" />
   </Target>
 </Project>
