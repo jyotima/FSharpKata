@@ -1,0 +1,66 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Specify where tasks are implemented. -->
+  <UsingTask AssemblyFile="$(MSBuildThisFileDirectory)FSharpLint.MSBuildIntegration.dll" TaskName="FSharpLintTask" />
+
+  <PropertyGroup>
+    <BuildDependsOn>AddFSharpCoreDataFilesToCleanCache;$(BuildDependsOn);FSharpLint</BuildDependsOn>
+  </PropertyGroup>
+
+  <!-- Define FSharpLintTreatWarningsAsErrors property. -->
+  <PropertyGroup Condition="('$(SourceAnalysisTreatWarningsAsErrors)' != '') and ('$(FSharpLintTreatWarningsAsErrorsrstWarningsAsErrors)' == '')">
+    <FSharpLintTreatWarningsAsErrors>$(SourceAnalysisTreatWarningsAsErrors)</FSharpLintTreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(FSharpLintTreatWarningsAsErrors)' == ''">
+    <FSharpLintTreatWarningsAsErrors>true</FSharpLintTreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!-- Define FSharpLintEnabled property. -->
+  <PropertyGroup Condition="('$(SourceAnalysisEnabled)' != '') and ('$(FSharpLintEnabled)' == '')">
+    <FSharpLintEnabled>$(SourceAnalysisEnabled)</FSharpLintEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(FSharpLintEnabled)' == ''">
+    <FSharpLintEnabled>true</FSharpLintEnabled>
+  </PropertyGroup>
+
+  <Target Name="AddFSharpCoreDataFilesToCleanCache">
+    <ItemGroup>
+      <FileWrites Include="@(FSharpCoreDataFiles->'$(OutDir)%(Filename)%(Extension)')"/>
+    </ItemGroup>
+  </Target>
+
+  <!-- Define target: FSharpLint -->
+  <Target Name="FSharpLint" Condition="'$(FSharpLintEnabled)' != 'false'">
+    <!-- Determine what files should be checked. Take all Compile items, but exclude those that have
+        set ExcludeFromFSharpLint=true or ExcludeFromSourceAnalysis=true. -->
+    <CreateItem Include="@(Compile)" Condition="('%(Compile.ExcludeFromFSharpLint)' != 'true') and ('%(Compile.ExcludeFromSourceAnalysis)' != 'true')">
+      <Output TaskParameter="Include" ItemName="FSharpLintFiles"/>
+    </CreateItem>
+
+    <Message Text="Analyzing @(FSharpLintFiles)" Importance="High" />
+
+    <!-- Show list of what files should be excluded. checked. Take all Compile items, but exclude those that have
+        set ExcludeFromFSharpLint=true or ExcludeFromSourceAnalysis=true. -->
+    <CreateItem Include="@(Compile)" Condition="('%(Compile.ExcludeFromFSharpLint)' == 'true') or ('%(Compile.ExcludeFromSourceAnalysis)' == 'true')">
+      <Output TaskParameter="Include" ItemName="FSharpLintExcludedFiles"/>
+    </CreateItem>
+
+    <ItemGroup>
+      <FSharpLintFiles Remove="@(ExcludeFromFSharpLint)" />    
+    </ItemGroup>
+
+    <Message Text="Excluding @(FSharpLintExcludedFiles)" Importance="Normal" Condition="'@(FSharpLintExcludedFiles)' != ''" />
+
+    <Copy
+      SourceFiles="@(FSharpCoreDataFiles)"
+      DestinationFiles="@(FSharpCoreDataFiles->'$(OutDir)%(Filename)%(Extension)')"
+      OverwriteReadOnlyFiles="true"
+    />
+    
+    <FSharpLintTask
+      Project="$(MSBuildProjectFullPath)" 
+      TreatWarningsAsErrors="$(FSharpLintTreatWarningsAsErrors)"
+    >
+    </FSharpLintTask>
+  </Target>
+
+</Project>

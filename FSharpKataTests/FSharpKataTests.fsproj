@@ -74,22 +74,7 @@
     <None Include="packages.config" />
     <Compile Include="Library1.fs" />
   </ItemGroup>
-  <PropertyGroup>
-    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
-  </PropertyGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '11.0'">
-      <PropertyGroup Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')">
-        <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
-      </PropertyGroup>
-    </When>
-    <Otherwise>
-      <PropertyGroup Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets')">
-        <FSharpTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
-      </PropertyGroup>
-    </Otherwise>
-  </Choose>
-  <Import Project="$(FSharpTargetsPath)" />
+  <Import Project="$(MSBuildProjectDirectory)\..\Tools\FSharp\Microsoft.FSharp.Targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -97,9 +82,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <UsingTask AssemblyFile="$(ProjectDir)..\Tools\FsharpLint\FSharpLint.MSBuildIntegration.dll" TaskName="FSharpLintTask" />
-  <Target Condition="'$(NCrunch)'!='1'" Name="AfterBuild">
-    <Copy SourceFiles="$(ProjectDir)..\Tools\FSharpCoreDependencies\FSharp.Core.sigdata;$(ProjectDir)..\Tools\FSharpCoreDependencies\FSharp.Core.optdata" DestinationFolder="$(TargetDir)" />
-    <FSharpLintTask Project="$(MSBuildProjectFullPath)" TreatWarningsAsErrors="True" />
-  </Target>
 </Project>
