@@ -5,7 +5,7 @@ open Xunit
 open FsUnit.Xunit
 
 [<Fact>]
-let ``first test case.``() = 
+let ``first test case``() = 
     1 |> should equal 1
     1 |> should not' (equal 2)
     10.1 |> should (equalWithin 0.1) 10.11
@@ -22,7 +22,7 @@ let ``first test case.``() =
     "" |> should be NullOrEmptyString
     null |> should be NullOrEmptyString
     null |> should be Null
-    // anObj |> should not' (be Null) bunch of object related ones at https://github.com/fsharp/fsunit
+    // TODO: Enable this: anObj |> should not' (be Null) bunch of object related ones at https://github.com/fsharp/fsunit
     11 |> should be (greaterThan 10)
     1 |> should not' (be ofExactType<obj>)
-// (fun () -> failwith "BOOM!") |> should throw typeof<System.Exception>
+    // TODO: Enable this: (fun () -> failwith "BOOM!") |> should throw typeof<System.Exception>

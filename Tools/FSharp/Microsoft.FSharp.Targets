@@ -1,0 +1,22 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="_VerifyFSharpVersions">
+  <PropertyGroup>
+    <TargetFSharpVersion>3.1</TargetFSharpVersion>
+    <SupportedTargetFSharpCoreVersion>4.3.1.0</SupportedTargetFSharpCoreVersion>
+    <SupportedTargetFrameworkVersion>v4.5</SupportedTargetFrameworkVersion>
+    <FSharpTargetsPath>$(MSBuildProgramFiles32)\Microsoft SDKs\F#\$(TargetFSharpVersion)\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
+    <FSharpCorePath>$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\FSharp\.NETFramework\v4.0\$(TargetFSharpCoreVersion)</FSharpCorePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FSharpCoreDataFiles Include="$(FSharpCorePath)\FSharp.Core.sigdata" />
+    <FSharpCoreDataFiles Include="$(FSharpCorePath)\FSharp.Core.optdata" />
+  </ItemGroup>
+  
+  <Target Name="_VerifyFSharpVersions">
+    <Error Text="Only supported TargetFSharpCoreVersion is $(SupportedTargetFSharpCoreVersion)." Condition="'$(TargetFSharpCoreVersion)' != '$(SupportedTargetFSharpCoreVersion)'" />
+    <Error Text="Only supported TargetFrameworkVersion is $(SupportedTargetFrameworkVersion)." Condition="'$(TargetFrameworkVersion)' != '$(SupportedTargetFrameworkVersion)'" />
+  </Target>
+  
+  <Import Project="$(FSharpTargetsPath)" />
+  <Import Project="$(MSBuildThisFileDirectory)..\FSharpLint\FsharpLint.targets" Condition="'$(NCrunch)' != '1'" />
+</Project>
