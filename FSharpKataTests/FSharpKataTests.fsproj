@@ -74,6 +74,13 @@
     <None Include="packages.config" />
     <Compile Include="Library1.fs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSharpKata\FSharpKata.fsproj">
+      <Name>FSharpKata</Name>
+      <Project>{bdecf1ce-22bc-4c84-93db-a2d08da48e5f}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildProjectDirectory)\..\Tools\FSharp\Microsoft.FSharp.Targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

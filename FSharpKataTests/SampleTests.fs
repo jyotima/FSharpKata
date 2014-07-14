@@ -26,3 +26,11 @@ let ``first test case``() =
     11 |> should be (greaterThan 10)
     1 |> should not' (be ofExactType<obj>)
     // TODO: Enable this: (fun () -> failwith "BOOM!") |> should throw typeof<System.Exception>
+
+    // NUnit specific only , but currently not working even on referencing fsunit nunit
+    // [] |> should be Empty // NUnit only
+    // [1] |> should not' (be Empty) // NUnit only
+    // "test" |> should be instanceOfType<string> // Currently, NUnit only and requires version 1.0.1.0+
+    // "test" |> should not' (be instanceOfType<int>) // Currently, NUnit only and requires version 1.0.1.0+
+    // 2.0 |> should not' (be NaN) // Currently, NUnit only and requires version 1.0.1.0+
+    // [1;2;3] |> should be unique // Currently, NUnit only and requires version 1.0.1.0+
