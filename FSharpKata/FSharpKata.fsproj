@@ -53,6 +53,7 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fizzbuzz.fs" />
     <Compile Include="Library1.fs" />
     <None Include="packages.config" />
   </ItemGroup>

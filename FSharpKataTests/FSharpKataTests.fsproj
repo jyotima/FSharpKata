@@ -67,8 +67,13 @@
       <HintPath>..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="xunit.extensions">
+      <HintPath>..\packages\xunit.extensions.1.9.2\lib\net20\xunit.extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FizzbuzzTests.fs" />
     <Compile Include="SampleTests.fs" />
     <None Include="app.config" />
     <None Include="packages.config" />
