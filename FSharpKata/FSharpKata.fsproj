@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>bdecf1ce-22bc-4c84-93db-a2d08da48e5f</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>FSharpKata</RootNamespace>
     <AssemblyName>FSharpKata</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
