@@ -24,3 +24,7 @@ let AddShouldReturn0OnEmptyNumber() =
 [<InlineData("3", 3)>]
 let AddShouldReturnNumberIfASingleNumberIsPassed number expected =
     add number |> should equal expected
+
+[<Fact>]
+let AddShouldReturnAdditionOfTwoNumbers() =
+    add "1,2" |> should equal 3
