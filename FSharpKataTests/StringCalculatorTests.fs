@@ -25,6 +25,10 @@ let AddShouldReturn0OnEmptyNumber() =
 let AddShouldReturnNumberIfASingleNumberIsPassed number expected =
     add number |> should equal expected
 
-[<Fact>]
-let AddShouldReturnAdditionOfTwoNumbers() =
-    add "1,2" |> should equal 3
+[<Theory>]
+[<InlineData("1,2", 3)>]
+[<InlineData("1,3", 4)>]
+[<InlineData("1,2,3", 6)>]
+[<InlineData("1,2,3,4", 10)>]
+let AddShouldReturnAdditionOfMultipleNumbers number expected =
+    add number |> should equal expected
