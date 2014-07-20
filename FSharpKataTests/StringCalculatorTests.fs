@@ -11,12 +11,16 @@
 open StringCalculator
 open Xunit
 open FsUnit.Xunit
+open Xunit.Extensions
 
 
 [<Fact>]
 let AddShouldReturn0OnEmptyNumber() =
     add "" |> should equal 0
 
-[<Fact>]
-let AddShouldReturnNumberIfASingleNumberIsPassed() =
-    add "1" |> should equal 1
+[<Theory>]
+[<InlineData("1", 1)>]
+[<InlineData("2", 2)>]
+[<InlineData("3", 3)>]
+let AddShouldReturnNumberIfASingleNumberIsPassed number expected =
+    add number |> should equal expected
