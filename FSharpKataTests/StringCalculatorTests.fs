@@ -32,3 +32,7 @@ let AddShouldReturnNumberIfASingleNumberIsPassed number expected =
 [<InlineData("1,2,3,4", 10)>]
 let AddShouldReturnAdditionOfMultipleNumbers number expected =
     add number |> should equal expected
+
+[<Fact>]
+let AddShouldReturnAdditionOfMultipleNumbersWithDifferentDelimiters() = 
+    add "1\n2"|> should equal 3
