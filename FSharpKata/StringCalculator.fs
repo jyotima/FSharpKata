@@ -1,4 +1,8 @@
 ﻿module StringCalculator
 
+open System
+
 let add number = 
-    0
+    match number with
+    | n when String.IsNullOrEmpty(n) -> 0
+    | _ -> 1 
