@@ -33,6 +33,18 @@ let AddShouldReturnNumberIfASingleNumberIsPassed number expected =
 let AddShouldReturnAdditionOfMultipleNumbers number expected =
     add number |> should equal expected
 
-[<Fact>]
-let AddShouldReturnAdditionOfMultipleNumbersWithDifferentDelimiters() = 
-    add "1\n2"|> should equal 3
+[<Theory>]
+[<InlineData("1\n2", 3)>]
+[<InlineData("1\n3", 4)>]
+[<InlineData("1\n2\n3", 6)>]
+[<InlineData("1\n2\n3,4", 10)>]
+let AddShouldReturnAdditionOfMultipleNumbersWithDifferentDelimiters number expected = 
+    add number |> should equal expected
+
+[<Theory>]
+[<InlineData("//;\n1;2", 3)>]
+[<InlineData("//;\n1;3", 4)>]
+[<InlineData("//-\n1-2-3", 6)>]
+[<InlineData("//-\n1-2-3-4", 10)>]
+let AddShouldReturnAdditionOfNumbersWithCustomDelimiters numbers expected =
+    add numbers |> should equal expected
