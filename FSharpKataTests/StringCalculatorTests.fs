@@ -48,3 +48,14 @@ let AddShouldReturnAdditionOfMultipleNumbersWithDifferentDelimiters number expec
 [<InlineData("//-\n1-2-3-4", 10)>]
 let AddShouldReturnAdditionOfNumbersWithCustomDelimiters numbers expected =
     add numbers |> should equal expected
+
+let getExceptionMessage (numbers : string) =
+    try
+        add numbers |> ignore
+        "exception not thrown"
+    with
+        | ex -> ex.Message
+
+[<Fact>]
+let AddShouldThrowIfNegativeNumbersArePassed() =
+    getExceptionMessage "1, -2" |> should equal "negative numbers are not allowed:-2"
