@@ -1,8 +1,15 @@
 ﻿module Fizzbuzz
 
+// http://fsharpforfunandprofit.com/posts/railway-oriented-programming-carbonated/
+
 let Fizzbuzz number = 
-    match number with
-    | i when i % 3 = 0 && i % 5 = 0 -> "FizzBuzz"
-    | i when i % 3 = 0 -> "Fizz"
-    | i when i % 5 = 0 -> "Buzz"
-    | _ -> number.ToString()
+    let mutable printed = false
+    if number % 3 = 0 then
+        printed <- true
+        printf "Fizz"
+    if number % 5 = 0 then 
+        printed <- true
+        printf "Buzz"
+
+    if not printed then
+        printf "%i" number
