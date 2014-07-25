@@ -2,14 +2,18 @@
 
 // http://fsharpforfunandprofit.com/posts/railway-oriented-programming-carbonated/
 
-let Fizzbuzz number = 
+let FizzBuzzWithRules number = 
+    let rules = [(3, "Fizz") ; (5, "Buzz")]
     let mutable printed = false
-    if number % 3 = 0 then
-        printed <- true
-        printf "Fizz"
-    if number % 5 = 0 then 
-        printed <- true
-        printf "Buzz"
-
+    let mutable returnLabel = ""
+    for factor, label in rules do
+        if number % factor = 0 then
+            printed <- true
+            returnLabel <- returnLabel + label
+    
     if not printed then
-        printf "%i" number
+        number.ToString()
+    else returnLabel
+
+let Fizzbuzz number = 
+    FizzBuzzWithRules number
