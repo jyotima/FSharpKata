@@ -2,18 +2,28 @@
 
 // http://fsharpforfunandprofit.com/posts/railway-oriented-programming-carbonated/
 
-let FizzBuzzWithRules number = 
-    let rules = [(3, "Fizz") ; (5, "Buzz")]
-    let mutable printed = false
-    let mutable returnLabel = ""
-    for factor, label in rules do
-        if number % factor = 0 then
-            printed <- true
-            returnLabel <- returnLabel + label
-    
-    if not printed then
-        number.ToString()
-    else returnLabel
+type Data = {i:int; label:string option}
+
+let carbonate factor label data =
+    let {i = i; label = labelSoFar} = data
+    if i % factor = 0 then 
+        let newLabel =
+            match labelSoFar with
+            | Some s -> s + label
+            | None -> label
+        {data with label = Some newLabel}
+    else
+        data
+
+let labelOrDefault data = 
+    let { i = i; label = labelSoFar} = data
+    match labelSoFar with
+    | Some s -> s
+    | None -> i.ToString()
 
 let Fizzbuzz number = 
-    FizzBuzzWithRules number
+    // FizzBuzzWithRules number
+    {i = number; label = None}
+    |> carbonate 3 "Fizz"
+    |> carbonate 5 "Buzz"
+    |> labelOrDefault
