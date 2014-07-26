@@ -15,9 +15,6 @@ let either successfulFunc failureFunc twoTrackInput =
     | Uncarbonated s -> successfulFunc s
     | Carbonated f -> failureFunc f
 
-let bind f = 
-    either f carbonated
-
 let carbonate factor label i = 
         if i % factor = 0 then
             carbonated label
@@ -31,9 +28,14 @@ let (<+>) switch1 switch2 x =
     | Carbonated s1,Uncarbonated f2 -> carbonated s1
     | Uncarbonated f1,Uncarbonated f2 -> uncarbonated f1
 
-let Fizzbuzz =
-    let carbonateAll = 
-        carbonate 3 "Fizz" <+> carbonate 5 "Buzz"
-    
+let fizzBuzzPrimes rules = 
+    let carbonateAll  = 
+        rules
+        |> List.map (fun (factor,label) -> carbonate factor label)
+        |> List.reduce (<+>)
     carbonateAll
     >> either (fun f -> f.ToString()) (fun f1 -> f1)
+
+let Fizzbuzz =
+    let rules = [ (3,"Fizz"); (5,"Buzz");]
+    fizzBuzzPrimes rules
