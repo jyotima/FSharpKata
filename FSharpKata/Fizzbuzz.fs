@@ -2,27 +2,27 @@
 
 // http://fsharpforfunandprofit.com/posts/railway-oriented-programming-carbonated/
 
-let (|Success|Failure|) =
+let (|Uncarbonated|Carbonated|) =
     function
-    | Choice1Of2 s -> Success s
-    | Choice2Of2 f -> Failure f
+    | Choice1Of2 u -> Uncarbonated u
+    | Choice2Of2 c -> Carbonated c
 
-let succeed x = Choice1Of2 x
-let fail x = Choice2Of2 x
+let uncarbonated x = Choice1Of2 x
+let carbonated x = Choice2Of2 x
 
 let either successfulFunc failureFunc twoTrackInput =
     match twoTrackInput with
-    | Success s -> successfulFunc s
-    | Failure f -> failureFunc f
+    | Uncarbonated s -> successfulFunc s
+    | Carbonated f -> failureFunc f
 
 let bind f = 
-    either f fail
+    either f carbonated
 
 let carbonate factor label i = 
         if i % factor = 0 then
-            fail label
+            carbonated label
         else
-            succeed i
+            uncarbonated i
 
 let Fizzbuzz =
     carbonate 15 "FizzBuzz"
