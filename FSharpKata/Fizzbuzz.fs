@@ -15,18 +15,17 @@ let either successfulFunc failureFunc twoTrackInput =
     | Success s -> successfulFunc s
     | Failure f -> failureFunc f
 
-let carbonate factor label i =
-    if i % factor = 0 then
-        succeed label
-    else fail i
+let bind f = 
+    either f fail
 
-let connect f =
-    function
-    | Success x -> succeed x
-    | Failure i -> f i
+let carbonate factor label i = 
+        if i % factor = 0 then
+            fail label
+        else
+            succeed i
 
 let Fizzbuzz =
     carbonate 15 "FizzBuzz"
-    >> connect (carbonate 3 "Fizz")
-    >> connect (carbonate 5 "Buzz")
-    >> either (fun f -> f) (fun f1 -> f1.ToString())
+    >> bind (carbonate 3 "Fizz")
+    >> bind (carbonate 5 "Buzz")
+    >> either (fun f -> f.ToString()) (fun f1 -> f1)
