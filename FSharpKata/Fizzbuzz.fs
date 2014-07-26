@@ -24,8 +24,16 @@ let carbonate factor label i =
         else
             uncarbonated i
 
+let (<+>) switch1 switch2 x =
+    match (switch1 x), (switch2 x) with
+    | Carbonated s1,Carbonated s2 -> carbonated (s1 + s2)
+    | Uncarbonated f1,Carbonated s2  -> carbonated s2
+    | Carbonated s1,Uncarbonated f2 -> carbonated s1
+    | Uncarbonated f1,Uncarbonated f2 -> uncarbonated f1
+
 let Fizzbuzz =
-    carbonate 15 "FizzBuzz"
-    >> bind (carbonate 3 "Fizz")
-    >> bind (carbonate 5 "Buzz")
+    let carbonateAll = 
+        carbonate 3 "Fizz" <+> carbonate 5 "Buzz"
+    
+    carbonateAll
     >> either (fun f -> f.ToString()) (fun f1 -> f1)
